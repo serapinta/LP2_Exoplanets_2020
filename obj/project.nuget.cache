@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "fX5kWaa0FDITASxvFyvb8trqX1b9dL6FWO2AjsOjlmpFEEFtjhxBUzCBnoqb96KyIKHE69BMruagV7DpVgRpAQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\bolhas\\source\\repos\\2020_2021\\LP2\\LP2_Exoplanets_2020\\LP2_Exoplanets_2020.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\bolhas\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
