@@ -1,16 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace LP2_Exoplanets_2020
 {
     public static class FileManager
     {
-        public static bool ReadFile(string _filePath)
+        public static List<Planet> ReadFile(string _filePath)
         {
             if (ValidateFile(_filePath))
             {
-               EntityGenerator.GenerateStarsAndPlanets(_filePath);
+                return EntityGenerator.GenerateStarsAndPlanets(_filePath);
             }
+            else
+                return null;
 
         }
 
@@ -61,6 +64,6 @@ namespace LP2_Exoplanets_2020
             }
         }
 
-       
+
     }
 }
