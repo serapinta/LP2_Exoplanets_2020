@@ -1,12 +1,11 @@
 using System;
 using System.IO;
-
 namespace LP2_Exoplanets_2020
 {
     public class UIDrawer
     {
         // Is follows the path of the file
-        private  string path;
+        private string path;
 
         //Draws the begging of the program and ask to put the file
         public void DrawFilePath()
@@ -23,9 +22,12 @@ namespace LP2_Exoplanets_2020
 
             path = Console.ReadLine();
 
+            FileManager.ReadFile(path);
+
             // If it fails a warning appear in the console screen
             Console.WriteLine("/nWarning: Wrong file path/ Invalid File ");
             Console.ReadKey();
+
             // Draws the DrawFilePath method again
             DrawFilePath();
         }
