@@ -3,14 +3,15 @@ using System.IO;
 
 namespace LP2_Exoplanets_2020
 {
-    public class FileManager
+    public static class FileManager
     {
         public static bool ReadFile(string _filePath)
         {
             if (ValidateFile(_filePath))
             {
-                GenerateStarsAndPlanets(_filePath);
+               EntityGenerator.GenerateStarsAndPlanets(_filePath);
             }
+
         }
 
         public static bool ValidateFile(string _filePath)
@@ -20,27 +21,27 @@ namespace LP2_Exoplanets_2020
                 using (StreamReader fileCsv = new StreamReader(_filePath))
                 {
                     String line;
-                    String[] order = null;
+                    String[] header = null;
                     //check if column's title line exists
                     while ((line = fileCsv.ReadLine()) != null)
                     {
-                        if (line[0] != '#' && order == null)
+                        if (line[0] != '#' && header == null)
                         {
-                            order = line.Split(',');
+                            header = line.Split(',');
                             break;
                         }
                     }
                     //if not return false, the values can't be sorted properly
-                    if (order == null)
+                    if (header == null)
                     {
-                        throw new IOException("The file requires the column's title line to be valid.");
+                        throw new IOException("The file requires the header line to be valid.");
                     }
                     uint flag = 0;
 
-                    for (int i = 0; i < order.Length; i++)
+                    for (int i = 0; i < header.Length; i++)
                     {
                         if (flag == 2) { break; }
-                        if (order[i] == "pl_name" || order[i] == "hostname")
+                        if (header[i] == "pl_name" || header[i] == "hostname")
                         {
                             flag++;
                         }
@@ -60,41 +61,6 @@ namespace LP2_Exoplanets_2020
             }
         }
 
-        public static void GenerateStarsAndPlanets(string _filePath)
-        {
-
- try
-            {
-                using (StreamReader fileCsv = new StreamReader(_filePath))
-                {
-                    String line;
-                    bool headerSkipped = false;
-                    //check if column's title line exists
-                    while ((line = fileCsv.ReadLine()) != null)
-                    {
-                        if (line[0] != '#' && !headerSkipped)
-                        {
-                            headerSkipped = true;
-                        }
-                    }
-                }
-            }
-            catch (IOException ioex)
-            {
-                Console.WriteLine("Invalid File. Error: " + ioex);
-         
-            }
-
-
-        }
-
-        public static void GenerateStarsOnly(string _filePath)
-        {
-        }
-
-        public static void GenerateStarsPlanetsOnly(string _filePath)
-        {
-        }
-
+       
     }
 }
