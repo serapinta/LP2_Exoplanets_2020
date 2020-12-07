@@ -12,7 +12,6 @@ namespace LP2_Exoplanets_2020
         private List<Planet> planetList = new List<Planet>();
         private Dictionary<string, Star> starDictionary = new Dictionary<string, Star>();
 
-
         //Draws the begging of the program and ask to put the file
         public void DrawFilePath(string errorMessage = default)
         {
@@ -53,18 +52,16 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|_______________________________________________|");
             Console.WriteLine(" _______________________________________________");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| P -Planets table                              |");
+            Console.WriteLine("| P - Planets table                             |");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| S -Stars table                                |");
+            Console.WriteLine("| S - Stars table                               |");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| C -Complete table                             |");
+            Console.WriteLine("| C - Complete table - WORK IN PROGRESS -       |");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| R -Return                                     |");
+            Console.WriteLine("| R - Return                                    |");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| E -Exit                                       |");
+            Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-
-
             // Is a switch where the person will interact with the menu choices
             ConsoleKey key = (Console.ReadKey(true)).Key;
             Choice(key);
@@ -155,7 +152,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 case ConsoleKey.C:
-
+                    //TableManager.ClearAllFilters();
                     break;
 
                 case ConsoleKey.R:
@@ -262,9 +259,9 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| P - Pl_eqt                                    |");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| R - Return                                    |");
-            Console.WriteLine("|                                               |");
             Console.WriteLine("| C - Clean all filters                         |");
+            Console.WriteLine("|                                               |");
+            Console.WriteLine("| R - Return                                    |");
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
@@ -279,37 +276,41 @@ namespace LP2_Exoplanets_2020
             switch (key)
             {
                 case ConsoleKey.Y:
-                    // 
+                    //TableManager.ClearFilters(true); 
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.O:
-                    // 
+                    //TableManager.ClearFilters(true); 
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.A:
-                    //
+                    //TableManager.ClearFilters(true); 
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.M:
-
+                    //TableManager.ClearFilters(true); 
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.P:
+                    //TableManager.ClearFilters(true); 
+                    MenuMinMaxValue();
+                    break;
 
+                case ConsoleKey.C:
+                    //TableManager.ClearAllFilters();
                     break;
 
                 case ConsoleKey.R:
                     SetFilter(true);
                     break;
 
-                case ConsoleKey.C:
-
-                    break;
-
                 case ConsoleKey.E:
                     Environment.Exit(0);
                     break;
-
 
                 default:
                     DrawMenu();
@@ -340,15 +341,15 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| D - Sy_dist                                   |");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| R - Return                                    |");
-            Console.WriteLine("|                                               |");
             Console.WriteLine("| C - Clean all filters                         |");
+            Console.WriteLine("|                                               |");
+            Console.WriteLine("| R - Return                                    |");
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
             // Is a switch where the person will interact with the menu choices
             ConsoleKey key = (Console.ReadKey(true)).Key;
-           NumericFilterStarsChoice(key);
+            NumericFilterStarsChoice(key);
         }
 
         private void NumericFilterStarsChoice(ConsoleKey key)
@@ -357,39 +358,46 @@ namespace LP2_Exoplanets_2020
             switch (key)
             {
                 case ConsoleKey.T:
-                    // 
+                    //TableManager.ClearFilters(false);
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.I:
-                    // 
+                    //TableManager.ClearFilters(false);
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.M:
-                    // 
+                    //TableManager.ClearFilters(false);
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.A:
-                    //
+                    //TableManager.ClearFilters(false);
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.V:
-
+                    //TableManager.ClearFilters(false);
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.S:
-
+                    //TableManager.ClearFilters(false);
+                    MenuMinMaxValue();
                     break;
 
                 case ConsoleKey.D:
+                    //TableManager.ClearFilters(false);
+                    MenuMinMaxValue();
+                    break;
 
+                case ConsoleKey.C:
+                    //TableManager.ClearAllFilters();
                     break;
 
                 case ConsoleKey.R:
                     SetFilter(false);
-                    break;
-
-                case ConsoleKey.C:
-
                     break;
 
                 case ConsoleKey.E:
@@ -415,33 +423,39 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| D - Discoverymethod                           |");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| R - Return                                    |");
-            Console.WriteLine("|                                               |");
             Console.WriteLine("| C - Clean all filters                         |");
+            Console.WriteLine("|                                               |");
+            Console.WriteLine("| R - Return                                    |");
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-
+            // Is a switch where the person will interact with the menu choices
+            ConsoleKey key = (Console.ReadKey(true)).Key;
+            NameFilterPlanetChoice(key);
         }
-        private void NameFilterPlanetChoice(ConsoleKey key, bool isPlanet)
+
+
+        private void NameFilterPlanetChoice(ConsoleKey key)
         {
             // Interact with the Menu
             switch (key)
             {
                 case ConsoleKey.N:
-
+                    //TableManager.ClearFilters(true);
+                    MenuTextValue();
                     break;
 
                 case ConsoleKey.D:
+                    //TableManager.ClearFilters(true);
+                    MenuTextValue();
+                    break;
 
+                case ConsoleKey.C:
+                    //TableManager.ClearAllFilters();
                     break;
 
                 case ConsoleKey.R:
                     NumericFilterPlanet();
-                    break;
-
-                case ConsoleKey.C:
-
                     break;
 
                 case ConsoleKey.E:
@@ -464,29 +478,33 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| S - StarName                                  |");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| R - Return                                    |");
-            Console.WriteLine("|                                               |");
             Console.WriteLine("| C - Clean all filters                         |");
+            Console.WriteLine("|                                               |");
+            Console.WriteLine("| R - Return                                    |");
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-
+            // Is a switch where the person will interact with the menu choices
+            ConsoleKey key = (Console.ReadKey(true)).Key;
+            NameFilterStarChoice(key, false);
         }
+
         private void NameFilterStarChoice(ConsoleKey key, bool isPlanet)
         {
             // Interact with the Menu
             switch (key)
             {
                 case ConsoleKey.S:
+                    //TableManager.ClearFilters(false);
+                    MenuTextValue();
+                    break;
 
+                case ConsoleKey.C:
+                    //TableManager.ClearAllFilters();
                     break;
 
                 case ConsoleKey.R:
                     NumericFilterStars();
-                    break;
-
-                case ConsoleKey.C:
-
                     break;
 
                 case ConsoleKey.E:
@@ -497,6 +515,24 @@ namespace LP2_Exoplanets_2020
                     DrawMenu();
                     break;
             }
+        }
+
+        private void MenuMinMaxValue(){
+            Console.Clear();
+            Console.WriteLine(" _______________________________________________");
+            Console.WriteLine("|                                               |");
+            Console.WriteLine("|                 Exoplanets                    |");
+            Console.WriteLine("|_______________________________________________|");            
+            Console.WriteLine(" Please insert Min, Max value (ex.: 0, 900): ");
+        }
+
+         private void MenuTextValue(){
+            Console.Clear();
+            Console.WriteLine(" _______________________________________________");
+            Console.WriteLine("|                                               |");
+            Console.WriteLine("|                 Exoplanets                    |");
+            Console.WriteLine("|_______________________________________________|");            
+            Console.WriteLine(" Please insert Text value (ex.: Jupiter): ");
         }
     }
 }
