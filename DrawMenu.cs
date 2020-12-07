@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Linq;
+
 namespace LP2_Exoplanets_2020
 {
     public class UIDrawer
@@ -85,7 +87,5 @@ namespace LP2_Exoplanets_2020
             }
             DrawMenu();
         }
-
-        //private void Table(){}
     }
 }
