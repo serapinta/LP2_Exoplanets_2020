@@ -4,21 +4,22 @@ namespace LP2_Exoplanets_2020
 {
     public class Planet : IEntity
     {
-
-        //star name
+        //Planet name
         public string Pl_name { get; set; }
+        //Planet discovery method
         public string Discoverymethod { get; set; }
-        //star radius (sun relation)
-        public float Disc_year { get; set; }
-        // Star mass (sun relation)
+        //Planet discovery year 
+        public int Disc_year { get; set; }
+        //Planet mass (sun relation)
         public float Pl_orbper { get; set; }
-        //star age (Giga-years)
+        //Planet age (Giga-years)
         public float Pl_rade { get; set; }
-        //star rotational velocity (km/s)
+        //Planet rotational velocity (km/s)
         public float Pl_masse { get; set; }
-        //star rotational period (days)
+        //Planet Equilibrium Temperature (Kelvin)
         public float Pl_eqt { get; set; }
 
+        //Planet host star
         public Star HostStar { get; set; }
 
         public Planet(string[] fields, string[] fieldsOrder)
@@ -42,6 +43,11 @@ namespace LP2_Exoplanets_2020
                         Discoverymethod = fields[i];
                         break;
 
+                    case "disc_year":
+                        Disc_year = (fields[i] != null && fields[i].Length != 0) ?
+                         int.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0;
+                        break;
+
                     case "pl_orbper":
                         Pl_orbper = (fields[i] != null && fields[i].Length != 0) ?
                          (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
@@ -51,7 +57,6 @@ namespace LP2_Exoplanets_2020
 
                         Pl_rade = (fields[i] != null && fields[i].Length != 0) ?
                          (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-
                         break;
 
                     case "pl_masse":
@@ -100,7 +105,6 @@ namespace LP2_Exoplanets_2020
                         break;
                 }
             }
-           
         }
     }
 }

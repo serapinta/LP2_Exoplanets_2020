@@ -22,7 +22,9 @@ namespace LP2_Exoplanets_2020
 
         public static bool ValidateFile(string _filePath)
         {
-            try
+            if(_filePath.Length !=0 && _filePath != null){
+                
+                 try
             {
                 using (StreamReader fileCsv = new StreamReader(_filePath))
                 {
@@ -65,6 +67,10 @@ namespace LP2_Exoplanets_2020
                 Console.WriteLine("Invalid File. Error: " + ioex);
                 return false;
             }
+            }
+            else
+            {return false;}
+           
         }
 
 
