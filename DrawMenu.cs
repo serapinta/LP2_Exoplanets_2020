@@ -81,7 +81,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 case ConsoleKey.S:
-                    PlanetTable();
+                    StarTable();
                     break;
 
                 case ConsoleKey.C:
@@ -222,7 +222,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 case ConsoleKey.R:
-                    if (PlanetTable())
+                    if (isPlanet)
                     {
                         PlanetTable();
                     }
@@ -299,7 +299,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 case ConsoleKey.R:
-                    PlanetTable();
+                    SetFilter(true);
                     break;
 
                 case ConsoleKey.C:
@@ -385,7 +385,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 case ConsoleKey.R:
-                    StarTable();
+                    SetFilter(false);
                     break;
 
                 case ConsoleKey.C:
