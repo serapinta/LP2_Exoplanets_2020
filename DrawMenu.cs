@@ -24,7 +24,12 @@ namespace LP2_Exoplanets_2020
 
             path = Console.ReadLine();
 
-            FileManager.ReadFile(path);
+            if (!FileManager.ValidateFile(path))
+            {
+                Console.WriteLine("/nWarning: Wrong file path / Invalid File ");
+            }else{
+                FileManager.ReadFile(path);
+            }
 
             // If it fails a warning appear in the console screen
             Console.WriteLine("/nWarning: Wrong file path/ Invalid File ");
