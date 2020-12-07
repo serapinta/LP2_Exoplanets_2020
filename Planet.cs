@@ -23,6 +23,7 @@ namespace LP2_Exoplanets_2020
 
         public Planet(string[] fields, string[] fieldsOrder)
         {
+            HostStar = new Star();
             for (int i = 0; i < fieldsOrder.Length; i++)
             {
 
@@ -42,59 +43,64 @@ namespace LP2_Exoplanets_2020
                         break;
 
                     case "pl_orbper":
-                        Pl_orbper = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        Pl_orbper = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
                     case "pl_rade":
-                        Pl_rade = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+
+                        Pl_rade = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
+
                         break;
 
                     case "pl_masse":
-                        Pl_masse = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        Pl_masse = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
                     case "pl_eqt":
-                        Pl_eqt = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        Pl_eqt = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
                     case "st_teff":
-                        HostStar.St_teff = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        HostStar.St_teff = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
                     case "st_rad":
-                        HostStar.St_rad = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        HostStar.St_rad = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
                     case "st_mass":
-                        HostStar.St_mass = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        HostStar.St_mass = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
                     case "st_age":
-                        HostStar.St_age = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        HostStar.St_age = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
                     case "st_vsin":
-                        HostStar.St_vsin = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        HostStar.St_vsin = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
                     case "st_rotp":
-                        HostStar.St_rotp = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        HostStar.St_rotp = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
                     case "sy_dist":
-                        HostStar.Sy_dist = fields[i] != null ? (float)Convert.ToDouble(fields[i]) : 0f;
+                        HostStar.Sy_dist = (fields[i] != null && fields[i].Length != 0) ?
+                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
-
-
                 }
-
-
             }
-
-        Console.WriteLine("planet {0} generated.",Pl_name);
-
+           
         }
-
-
     }
 }

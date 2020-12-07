@@ -16,19 +16,31 @@ namespace LP2_Exoplanets_2020
                 using (StreamReader fileCsv = new StreamReader(_filePath))
                 {
                     String line;
-                    String[] header = null;;
+                    String[] header = null; ;
                     //check if column's title line exists
-                   while ((line = fileCsv.ReadLine()) != null)
+                    while ((line = fileCsv.ReadLine()) != null)
                     {
-                        if (line[0] != '#' )
+                        Console.WriteLine("a");
+                        if (line.Length != 0)
                         {
-                            if(header == null){
-                            header = line.Split(',');
+                            if (line[0] != '#')
+                            {
+                                Console.WriteLine("B");
+
+                                if (header == null)
+                                {
+                                    header = line.Split(',');
+                                }
+                                else
+                                {
+                                    planets.Add(new Planet(line.Split(','), header));
+                                }
                             }
-                            else{
-                                planets.Add(new Planet(line.Split(','),header));
-                            }
+                            else
+                                Console.WriteLine("000");
                         }
+                        else
+                            Console.WriteLine("000");
                     }
                 }
                 return planets;
