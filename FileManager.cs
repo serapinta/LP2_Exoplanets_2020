@@ -6,11 +6,14 @@ namespace LP2_Exoplanets_2020
 {
     public static class FileManager
     {
-        public static List<Planet> ReadFile(string _filePath)
+        public static List<Planet> ReadFile(string _filePath, out Dictionary<string, Star> starDictionary)
         {
+            starDictionary = new Dictionary<string, Star>();
+
             if (ValidateFile(_filePath))
             {
-                return EntityGenerator.GenerateStarsAndPlanets(_filePath);
+
+                return EntityGenerator.GenerateStarsAndPlanets(_filePath,out starDictionary);
             }
             else
                 return null;

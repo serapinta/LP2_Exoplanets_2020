@@ -2,7 +2,7 @@ using System;
 
 namespace LP2_Exoplanets_2020
 {
-    public class Planet
+    public class Planet : IEntity
     {
 
         //star name

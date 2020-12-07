@@ -1,6 +1,6 @@
 namespace LP2_Exoplanets_2020
 {
-    public class Star
+    public class Star : IEntity
     {
         //star name
         public string StarName { get; internal set; }

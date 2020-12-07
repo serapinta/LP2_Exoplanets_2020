@@ -10,11 +10,12 @@ namespace LP2_Exoplanets_2020
         // Is follows the path of the file
         private string path;
         private List<Planet> planetList = new List<Planet>();
+        private Dictionary<string, Star> starDictionary = new Dictionary<string, Star>();
+
 
         //Draws the begging of the program and ask to put the file
         public void DrawFilePath(string errorMessage = default)
         {
-          
             Console.Clear();
             Console.WriteLine(" _______________________________________________");
             Console.WriteLine("|                                               |");
@@ -34,7 +35,7 @@ namespace LP2_Exoplanets_2020
             }
             else
             {
-                planetList = FileManager.ReadFile(path);
+                planetList = FileManager.ReadFile(path, out starDictionary);
                 DrawMenu();
             }
 
@@ -45,6 +46,7 @@ namespace LP2_Exoplanets_2020
         {
 
             Console.Clear();
+      
             Console.WriteLine(" _______________________________________________");
             Console.WriteLine("|                                               |");
             Console.WriteLine("|                   Exoplanets                  |");
@@ -63,6 +65,8 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E -Exit                                       |");
             Console.WriteLine("|_______________________________________________|");
+
+       
             // Is a swicth where the person will interact with the menu choices
             ConsoleKey key = (Console.ReadKey(true)).Key;
             Choice(key);
@@ -95,7 +99,6 @@ namespace LP2_Exoplanets_2020
                     Console.Clear();
                     Environment.Exit(0);
                     break;
-
 
                 default:
                     DrawMenu();
