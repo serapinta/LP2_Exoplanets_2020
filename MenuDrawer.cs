@@ -63,8 +63,6 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| S - Stars table                               |");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| C - Complete table - WORK IN PROGRESS -       |");
-            Console.WriteLine("|                                               |");
             Console.WriteLine("| R - Return                                    |");
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
@@ -98,6 +96,8 @@ namespace LP2_Exoplanets_2020
             FilterTypeChoice(key, true);
         }
 
+
+
         private void MenuStarTable()
         {
             Console.Clear();
@@ -106,6 +106,8 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                  Star Table                   |");
             Console.WriteLine("|_______________________________________________|");
             Console.WriteLine(" _______________________________________________");
+            Console.WriteLine("|                                               |");
+            Console.WriteLine("| T - Run Table                                 |");
             Console.WriteLine("|                                               |");
             Console.WriteLine("| S - Set filter                                |");
             Console.WriteLine("|                                               |");
@@ -268,8 +270,10 @@ namespace LP2_Exoplanets_2020
             float min = (input[0] != null && input[0].Length != 0) ?
             (float)double.Parse(input[0], System.Globalization.CultureInfo.InvariantCulture) : 0f;
 
-            float max = (input[0] != null && input[0].Length != 0) ?
-            (float)double.Parse(input[0], System.Globalization.CultureInfo.InvariantCulture) : 0f;
+            float max = (input[1] != null && input[1].Length != 0) ?
+            (float)double.Parse(input[1], System.Globalization.CultureInfo.InvariantCulture) : 0f;
+            Console.WriteLine(min+"---" + max);
+           Console.ReadLine();
 
             if (isPlanet)
             {
@@ -281,6 +285,8 @@ namespace LP2_Exoplanets_2020
                 if (!starFilters.Contains(new NumericFilter(fieldName, min, max)))
                     (starFilters as List<IFilter>).Add(new NumericFilter(fieldName, min, max));
             }
+
+
         }
 
         private void MenuTextValue(string fieldName, bool isPlanet)
@@ -324,10 +330,6 @@ namespace LP2_Exoplanets_2020
                     MenuStarTable();
                     break;
 
-                case ConsoleKey.C:
-                    // complete table, WOP
-                    break;
-
                 case ConsoleKey.R:
                     DrawFilePath();
                     break;
@@ -338,6 +340,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
+                    DrawMainMenu();
                     break;
             }
         }
@@ -374,6 +377,11 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
+                    if (isPlanet)
+                    { MenuSetFilter(true); }
+                    else
+                    { MenuSetFilter(false) ;}
+
                     break;
             }
         }
@@ -384,8 +392,9 @@ namespace LP2_Exoplanets_2020
             switch (key)
             {
                 case ConsoleKey.T:
-
                     TableManager.RunTable(planetList as List<Planet>, planetFilters as List<IFilter>);
+
+
                     break;
 
                 case ConsoleKey.S:
@@ -414,6 +423,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
+                    DrawMainMenu();
                     break;
             }
         }
@@ -425,26 +435,31 @@ namespace LP2_Exoplanets_2020
                 case ConsoleKey.Y:
                     //Disc_year
                     MenuMinMaxValue("disc_year", true);
+                    MenuSetFilter(true);
                     break;
 
                 case ConsoleKey.O:
                     //Pl_orbper
                     MenuMinMaxValue("pl_orbper", true);
+                    MenuSetFilter(true);
                     break;
 
                 case ConsoleKey.A:
                     //Pl_rade
                     MenuMinMaxValue("pl_rade", true);
+                    MenuSetFilter(true);
                     break;
 
                 case ConsoleKey.M:
                     //Pl_masse
                     MenuMinMaxValue("pl_masse", true);
+                    MenuSetFilter(true);
                     break;
 
                 case ConsoleKey.P:
                     //Pl_eqt
                     MenuMinMaxValue("pl_eqt", true);
+                    MenuSetFilter(true);
                     break;
 
                 case ConsoleKey.C:
@@ -463,6 +478,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
+                    MenuSetFilter(true);
                     break;
             }
         }
@@ -474,36 +490,43 @@ namespace LP2_Exoplanets_2020
                 case ConsoleKey.T:
 
                     MenuMinMaxValue("st_teff", false);
+                    MenuSetFilter(false);
                     break;
 
                 case ConsoleKey.I:
 
                     MenuMinMaxValue("st_rad", false);
+                    MenuSetFilter(false);
                     break;
 
                 case ConsoleKey.M:
 
                     MenuMinMaxValue("st_mass", false);
+                    MenuSetFilter(false);
                     break;
 
                 case ConsoleKey.A:
 
                     MenuMinMaxValue("st_age", false);
+                    MenuSetFilter(false);
                     break;
 
                 case ConsoleKey.V:
 
                     MenuMinMaxValue("st_vsin", false);
+                    MenuSetFilter(false);
                     break;
 
                 case ConsoleKey.S:
 
                     MenuMinMaxValue("st_rotp", false);
+                    MenuSetFilter(false);
                     break;
 
                 case ConsoleKey.D:
 
                     MenuMinMaxValue("sy_dist", false);
+                    MenuSetFilter(false);
                     break;
 
                 case ConsoleKey.C:
@@ -521,6 +544,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
+                    MenuSetFilter(false);
                     break;
             }
         }
@@ -532,16 +556,19 @@ namespace LP2_Exoplanets_2020
                 case ConsoleKey.N:
 
                     MenuTextValue("pl_name", true);
+                    MenuSetFilter(true);
                     break;
 
                 case ConsoleKey.D:
 
                     MenuTextValue("discoverymethod", true);
+                    MenuSetFilter(true);
                     break;
 
                 case ConsoleKey.H:
 
                     MenuTextValue("hostname", true);
+                    MenuSetFilter(true);
                     break;
 
 
@@ -560,6 +587,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
+                    MenuSetFilter(true);
                     break;
             }
         }
@@ -592,6 +620,7 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
+                    MenuSetFilter(false);
                     break;
             }
         }

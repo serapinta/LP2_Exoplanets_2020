@@ -6,17 +6,31 @@ namespace LP2_Exoplanets_2020
 {
     public static class DrawTable
     {
-
-
-        public static void PrintTable<T>(List<T> entities) where T:IEntity
+        public static void PrintBook<T>(List<List<T>> book) where T : IEntity
         {
-            Console.Clear();
-            
+            bool stay = true;
+            int actualPage = 0;
+            while (stay)
+            {
+                PrintPage(book[actualPage]);
+                actualPage = DrawPageUI(actualPage, book.Count, out stay);
 
+            }
 
 
         }
 
+
+        public static void PrintPage<T>(List<T> page) where T : IEntity
+        {
+            Console.Clear();
+
+            foreach (T entity in page)
+            {
+                PrintEntity<T>(entity);
+            }
+
+        }
 
 
         public static void PrintEntity<T>(T entity) where T : IEntity
@@ -27,14 +41,15 @@ namespace LP2_Exoplanets_2020
 
 
                 if (entity is Planet)
-                { Console.WriteLine("------------------------------------------------------------------------------------------------------");
+                {
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------");
                     Console.WriteLine(" Planet.Name: {0} ||| Host Star: {1} ",
                         (entity as Planet).Pl_name, (entity as Planet).HostStar.StarName);
                     Console.WriteLine(" Disc. method: {0} | Disc. year: {1} | Orb. period: {2} days",
                         (entity as Planet).DiscoveryMethod, (entity as Planet).Disc_year, (entity as Planet).Pl_eqt);
                     Console.WriteLine(" Plnt. Radius: {0} earths | Plnt. mass: {1} earths |Equilib. temp: {2} Kelvin ",
                         (entity as Planet).Pl_rade, (entity as Planet).Pl_masse, (entity as Planet).Pl_eqt);
-                 Console.WriteLine("------------------------------------------------------------------------------------------------------");
+                    Console.WriteLine("------------------------------------------------------------------------------------------------------");
                 }
                 else if (entity is Star)
                 {
@@ -48,20 +63,48 @@ namespace LP2_Exoplanets_2020
                 }
             }
 
-
-
         }
-        public static void DrawUI()
+
+
+        public static int DrawPageUI(int actualPage, int totalPage, out bool stay)
         {
-            int ActualPage = default;
-            int TotalPage = default;
-            Console.WriteLine("M - Menu   P << {0}/{1} >> N    E - Exit", ActualPage, TotalPage);
+            Console.WriteLine("-----------------------------------------------------------------------");
+            Console.WriteLine("           M - Menu   P << {0} / {1} >> N    E - Exit", actualPage, totalPage);
+            Console.WriteLine("-----------------------------------------------------------------------");
 
+
+
+            ConsoleKey key = (Console.ReadKey(true)).Key;
+
+
+            switch (key)
+            {
+                case ConsoleKey.M:
+                    stay = false;
+                    return 0;
+
+                case ConsoleKey.P:
+                    stay = true;
+                    return (actualPage<=0? 0: actualPage - 1);
+
+                case ConsoleKey.N:
+                    stay = true;
+                    return actualPage>=totalPage? actualPage: actualPage + 1;
+
+
+                case ConsoleKey.E:
+                    Environment.Exit(0);
+                    break;
+
+                default:
+                    stay = true;
+                    return actualPage;
+
+            }
+            stay = true;
+            return actualPage;
         }
-
-
-
-
 
     }
+
 }

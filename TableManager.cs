@@ -6,30 +6,32 @@ namespace LP2_Exoplanets_2020
     public static class TableManager
     {
 
-        public static void RunTable <T, U>(List<T> planets, List<U> filters) where T: IEntity where U: IFilter
+        public static void RunTable<T, U>(List<T> entities, List<U> filters, int firstOfThisPage = 0) where T : IEntity where U : IFilter
         {
-            if (planets == null)
-                Console.WriteLine("aaaaaaaaaaa");
-            else
+            List<List<T>>book = new List<List<T>>();
+
+            if (filters != null)
             {
-                if (filters != null)
+                if (filters.Count > 0)
                 {
-                    if (filters.Count > 0)
-                    {
-                        DrawTable.PrintEntity(GetFilteredList(planets,filters)[0]);
-                    }
-                    else
-                    {
-                        DrawTable.PrintEntity(planets[0]);
-                    }
+                   book = GenerateBook<T>(GetFilteredList(entities, filters));
+
+                   }
+                else
+                {
+                    book = GenerateBook<T>(entities);
                 }
-               
+
+                DrawTable.PrintBook(book);
+
+
+
             }
         }
 
 
 
-        public static List<T> GetFilteredList<T, U>( List<T> entities, List<U> filters) where T : IEntity where U : IFilter
+        public static List<T> GetFilteredList<T, U>(List<T> entities, List<U> filters) where T : IEntity where U : IFilter
         {
             List<T> filteredList = new List<T>();
 
@@ -216,6 +218,35 @@ namespace LP2_Exoplanets_2020
             return false;
 
         }
+
+
+        public static int GetTotalPages<T>(List<T> entities) where T : IEntity =>
+        (entities.Count % 10 == 0 ? (entities.Count / 10) : (entities.Count / 10) + 1);
+
+        public static List<List<T>> GenerateBook<T>(List<T> entities) where T : IEntity
+        {
+            int counter = 0;
+            List<T> page = new List<T>();
+            List<List<T>> book = new List<List<T>>();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                page.Add(entities[i]);
+                counter++;
+                if (counter >= 10 || i == (entities.Count) - 1)
+                {
+                    book.Add(page);
+                    counter = 0;
+                    page = new List<T>();
+                }
+
+            }
+
+            return book;
+
+        }
+
+
+        
 
     }
 }
