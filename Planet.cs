@@ -7,7 +7,7 @@ namespace LP2_Exoplanets_2020
         //Planet name
         public string Pl_name { get; set; }
         //Planet discovery method
-        public string Discoverymethod { get; set; }
+        public string DiscoveryMethod { get; set; }
         //Planet discovery year 
         public int Disc_year { get; set; }
         //Planet mass (sun relation)
@@ -40,7 +40,7 @@ namespace LP2_Exoplanets_2020
                         break;
 
                     case "discoverymethod":
-                        Discoverymethod = fields[i];
+                        DiscoveryMethod = fields[i];
                         break;
 
                     case "disc_year":
