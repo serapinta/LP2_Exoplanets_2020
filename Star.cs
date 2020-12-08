@@ -25,6 +25,7 @@ namespace LP2_Exoplanets_2020
 
         public Star(string[] fields, string[] fieldsOrder)
         {
+            HostedPlanetsName = new List<string>();
             for (int i = 0; i < fieldsOrder.Length; i++)
             {
 

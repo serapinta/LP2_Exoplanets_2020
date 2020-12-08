@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LP2_Exoplanets_2020
@@ -7,8 +8,11 @@ namespace LP2_Exoplanets_2020
     {
 
 
-        public static void PrintTable()
+        public static void PrintTable<T>(List<T> entities) where T:IEntity
         {
+            Console.Clear();
+            
+
 
 
         }
@@ -20,22 +24,17 @@ namespace LP2_Exoplanets_2020
             if (entity != null)
 
             {
-                if ((entity as Planet).HostStar == null)
-                {
-                    Console.WriteLine("aisuhgdausdhgfiufsdga");
-                }
-
 
 
                 if (entity is Planet)
-                {
-                    Console.WriteLine(" Plnt. Name:{0} | Host name: {1} ",
+                { Console.WriteLine("------------------------------------------------------------------------------------------------------");
+                    Console.WriteLine(" Planet.Name: {0} ||| Host Star: {1} ",
                         (entity as Planet).Pl_name, (entity as Planet).HostStar.StarName);
                     Console.WriteLine(" Disc. method: {0} | Disc. year: {1} | Orb. period: {2} days",
                         (entity as Planet).DiscoveryMethod, (entity as Planet).Disc_year, (entity as Planet).Pl_eqt);
                     Console.WriteLine(" Plnt. Radius: {0} earths | Plnt. mass: {1} earths |Equilib. temp: {2} Kelvin ",
                         (entity as Planet).Pl_rade, (entity as Planet).Pl_masse, (entity as Planet).Pl_eqt);
-
+                 Console.WriteLine("------------------------------------------------------------------------------------------------------");
                 }
                 else if (entity is Star)
                 {

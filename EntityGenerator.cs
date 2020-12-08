@@ -12,7 +12,7 @@ namespace LP2_Exoplanets_2020
         {
             List<Planet> planetList = GeneratePlanetsOnly(_filePath);
 
-            Console.WriteLine(planetList.Count + ".");
+           
             starDictionary = GenerateStarsOnly(planetList);
 
             return planetList;
@@ -82,7 +82,7 @@ namespace LP2_Exoplanets_2020
                 {
                     if (starDictionary.ContainsKey(planetList[i].HostStar.StarName))
                     {
-                        Console.WriteLine(planetList[i].HostStar.StarName);
+                        
                         starDictionary[planetList[i].HostStar.StarName].ActualizeValues(planetList[i]);
                     }
                     else

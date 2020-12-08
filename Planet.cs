@@ -34,6 +34,7 @@ namespace LP2_Exoplanets_2020
 
                     case "pl_name":
                         Pl_name = fields[i];
+                        HostStar.HostedPlanetsName.Add(fields[i]);
                         break;
 
                     case "discoverymethod":
