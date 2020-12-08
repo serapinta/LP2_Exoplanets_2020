@@ -7,12 +7,17 @@ namespace LP2_Exoplanets_2020
 {
     public class UIDrawer
     {
-        // Is follows the path of the file
+        // File path
         private string path;
+        // Planet list returned by the csv file
         private List<Planet> planetList = new List<Planet>();
+        // Stars dictionary returned by the csv file
         private Dictionary<string, Star> starDictionary = new Dictionary<string, Star>();
 
-        //Draws the begging of the program and ask to put the file
+        /// <summary>
+        /// Draws the begging of the program and ask to put the file
+        /// </summary>
+        /// <param name="errorMessage">shows the error when the file is rejected</param>
         public void DrawFilePath(string errorMessage = default)
         {
             Console.Clear();
@@ -38,12 +43,12 @@ namespace LP2_Exoplanets_2020
                 DrawMenu();
             }
         }
-
-        //Draws the Menu
+        /// <summary>
+        /// Method to draw the MainMenu
+        /// </summary>
         private void DrawMenu()
         {
             Console.Clear();
-
             Console.WriteLine(" _______________________________________________");
             Console.WriteLine("|                                               |");
             Console.WriteLine("|                   Exoplanets                  |");
@@ -62,15 +67,17 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-            // Is a switch where the person will interact with the menu choices
+            // Checks if it a star or a planet table
             ConsoleKey key = (Console.ReadKey(true)).Key;
             Choice(key);
         }
 
-        // Method of a switch
+        /// <summary>
+        /// Method with a switch to interact with MainMenu  
+        /// </summary>
+        /// <param name="key">read the user input</param>
         private void Choice(ConsoleKey key)
         {
-            // Interact with the Menu
             switch (key)
             {
                 case ConsoleKey.P:
@@ -95,11 +102,12 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
-                    DrawMenu();
                     break;
             }
         }
-
+        /// <summary>
+        /// Method to draw the menu Planet Table
+        /// </summary>
         private void PlanetTable()
         {
             Console.Clear();
@@ -117,10 +125,14 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-            // Is a switch where the person will interact with the menu choices
+            // Checks if it a star or a planet filter
             ConsoleKey key = (Console.ReadKey(true)).Key;
             FilterChoice(key, true);
         }
+
+        /// <summary>
+        /// Method to draw the menu Star Table
+        /// </summary>
         private void StarTable()
         {
             Console.Clear();
@@ -138,13 +150,18 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-            // Is a switch where the person will interact with the menu choices
+            // Checks if it a star or a planet filter
             ConsoleKey key = (Console.ReadKey(true)).Key;
             FilterChoice(key, false);
         }
+
+        /// <summary>
+        /// Method with a switch to interact with menu Star Table  
+        /// </summary>
+        /// <param name="key">read the user input</param>
+        /// <param name="isPlanet">to know if its a planet or a star</param>
         private void FilterChoice(ConsoleKey key, bool isPlanet)
         {
-            // Interact with the Menu
             switch (key)
             {
                 case ConsoleKey.S:
@@ -164,11 +181,13 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
-                    DrawMenu();
                     break;
             }
         }
-
+        /// <summary>
+        /// Method to draw the menu Set filter
+        /// </summary>
+        /// <param name="isPlanet">to know if its planet ou star</param>
         private void SetFilter(bool isPlanet)
         {
             Console.Clear();
@@ -186,14 +205,17 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-            // Is a switch where the person will interact with the menu choices
+            // Checks if it a star or a planet filter
             ConsoleKey key = (Console.ReadKey(true)).Key;
             SetChoice(key, isPlanet);
         }
-
+        /// <summary>
+        /// Method with a switch to interact with menu Set filter 
+        /// </summary>
+        /// <param name="key">read the user input</param>
+        /// <param name="isPlanet">to know if its a planet or a star</param>
         private void SetChoice(ConsoleKey key, bool isPlanet)
         {
-            // Interact with the Menu
             switch (key)
             {
                 case ConsoleKey.U:
@@ -235,11 +257,12 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
-                    DrawMenu();
                     break;
             }
         }
-
+        /// <summary>
+        /// Method to draw the menu Numeric filter planet
+        /// </summary>
         private void NumericFilterPlanet()
         {
             Console.Clear();
@@ -265,17 +288,19 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-            // Is a switch where the person will interact with the menu choices
+            // Checks if it a star or a planet filter
             ConsoleKey key = (Console.ReadKey(true)).Key;
             NumericFilterPlanetsChoice(key);
         }
-
+        /// <summary>
+        /// Method with a switch to interact with menu Numeric filter planet
+        /// </summary>
+        /// <param name="key">read the user input</param>
         private void NumericFilterPlanetsChoice(ConsoleKey key)
         {
-            // Interact with the Menu
             switch (key)
             {
-                case ConsoleKey.Y:
+                case ConsoleKey.D:
                     //TableManager.ClearFilters(true); 
                     MenuMinMaxValue();
                     break;
@@ -313,11 +338,12 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
-                    DrawMenu();
                     break;
             }
         }
-
+        /// <summary>
+        /// Method to draw the menu Numeric filter star
+        /// </summary>
         private void NumericFilterStars()
         {
             Console.Clear();
@@ -347,14 +373,16 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-            // Is a switch where the person will interact with the menu choices
+            // Checks if it a star or a planet filter
             ConsoleKey key = (Console.ReadKey(true)).Key;
             NumericFilterStarsChoice(key);
         }
-
+        /// <summary>
+        /// Method with a switch to interact with menu Numeric filter star 
+        /// </summary>
+        /// <param name="key">read the user input</param>
         private void NumericFilterStarsChoice(ConsoleKey key)
         {
-            // Interact with the Menu
             switch (key)
             {
                 case ConsoleKey.T:
@@ -405,11 +433,12 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
-                    DrawMenu();
                     break;
             }
         }
-
+        /// <summary>
+        /// Method to draw the menu Name filter planet
+        /// </summary>
         private void NameFilterPlanet()
         {
             Console.Clear();
@@ -429,15 +458,17 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-            // Is a switch where the person will interact with the menu choices
+            // Checks if it a star or a planet filter
             ConsoleKey key = (Console.ReadKey(true)).Key;
             NameFilterPlanetChoice(key);
         }
 
-
+        /// <summary>
+        /// Method with a switch to interact with menu Name filter Star 
+        /// </summary>
+        /// <param name="key">read the user input</param>
         private void NameFilterPlanetChoice(ConsoleKey key)
         {
-            // Interact with the Menu
             switch (key)
             {
                 case ConsoleKey.N:
@@ -463,10 +494,12 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
-                    DrawMenu();
                     break;
             }
         }
+        /// <summary>
+        /// Method to draw the menu Name filter star
+        /// </summary>
         private void NameFilterStar()
         {
             Console.Clear();
@@ -476,7 +509,7 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|_______________________________________________|");
             Console.WriteLine(" _______________________________________________");
             Console.WriteLine("|                                               |");
-            Console.WriteLine("| S - StarName                                  |");
+            Console.WriteLine("| N - StarName                                  |");
             Console.WriteLine("|                                               |");
             Console.WriteLine("| C - Clean all filters                         |");
             Console.WriteLine("|                                               |");
@@ -484,17 +517,21 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
-            // Is a switch where the person will interact with the menu choices
+            // Checks if it a star or a planet filter
             ConsoleKey key = (Console.ReadKey(true)).Key;
             NameFilterStarChoice(key, false);
         }
 
+        /// <summary>
+        /// Method with a switch to interact with menu Name filter Star
+        /// </summary>
+        /// <param name="key">read the user input</param>
+        /// <param name="isPlanet">to know if its a planet or a star</param>
         private void NameFilterStarChoice(ConsoleKey key, bool isPlanet)
         {
-            // Interact with the Menu
             switch (key)
             {
-                case ConsoleKey.S:
+                case ConsoleKey.N:
                     //TableManager.ClearFilters(false);
                     MenuTextValue();
                     break;
@@ -512,26 +549,31 @@ namespace LP2_Exoplanets_2020
                     break;
 
                 default:
-                    DrawMenu();
                     break;
             }
         }
-
-        private void MenuMinMaxValue(){
+        /// <summary>
+        /// Method to ask to write Min Max filter values 
+        /// </summary>
+        private void MenuMinMaxValue()
+        {
             Console.Clear();
             Console.WriteLine(" _______________________________________________");
             Console.WriteLine("|                                               |");
             Console.WriteLine("|                 Exoplanets                    |");
-            Console.WriteLine("|_______________________________________________|");            
+            Console.WriteLine("|_______________________________________________|");
             Console.WriteLine(" Please insert Min, Max value (ex.: 0, 900): ");
         }
-
-         private void MenuTextValue(){
+        /// <summary>
+        /// Method to ask to write text value
+        /// </summary>
+        private void MenuTextValue()
+        {
             Console.Clear();
             Console.WriteLine(" _______________________________________________");
             Console.WriteLine("|                                               |");
             Console.WriteLine("|                 Exoplanets                    |");
-            Console.WriteLine("|_______________________________________________|");            
+            Console.WriteLine("|_______________________________________________|");
             Console.WriteLine(" Please insert Text value (ex.: Jupiter): ");
         }
     }
