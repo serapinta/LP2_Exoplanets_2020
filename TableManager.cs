@@ -6,163 +6,211 @@ namespace LP2_Exoplanets_2020
     public static class TableManager
     {
 
-        public static List<IEntity> GetFilteredList(List<IFilter> filters, List<IEntity> entities, bool isPlanet)
+        public static void RunTable <T, U>(List<T> planets, List<U> filters) where T: IEntity where U: IFilter
         {
-            List<IEntity> filteredList = new List<IEntity>();
-            if (isPlanet)
+            if (planets == null)
+                Console.WriteLine("aaaaaaaaaaa");
+            else
             {
-                for (int i = 0; i < entities.Count; i++)
+                if (filters != null)
                 {
-                    if (ValidatePlanetFields((Planet)entities[i], filters))
+                    if (filters.Count > 0)
                     {
-                        filteredList.Add(entities[i]);
+                        DrawTable.PrintEntity(GetFilteredList(planets,filters)[0]);
+                    }
+                    else
+                    {
+                        DrawTable.PrintEntity(planets[0]);
                     }
                 }
+               
             }
-            else{
+        }
 
-                for (int i = 0; i < entities.Count; i++)
+
+
+        public static List<T> GetFilteredList<T, U>( List<T> entities, List<U> filters) where T : IEntity where U : IFilter
+        {
+            List<T> filteredList = new List<T>();
+
+
+
+            for (int i = 0; i < entities.Count; i++)
+            {
+                if (ValidateFields(entities[i], filters))
                 {
-
-                    if (ValidateStarFields((Star)entities[i], filters))
-                    {
-                        filteredList.Add(entities[i]);
-                    }
+                    filteredList.Add(entities[i]);
                 }
             }
 
-        return filteredList;
+
+
+            return filteredList;
 
         }
 
-        public static bool ValidatePlanetFields(Planet entityToValidate, List<IFilter> filters)
+        public static bool ValidateFields<T, U>(T entityToValidate, List<U> filters) where T : IEntity where U : IFilter
         {
-            for (int i = 0; i < filters.Count; i++)
+            if (entityToValidate is Planet)
             {
-
-                switch (filters[i].FieldName)
+                for (int i = 0; i < filters.Count; i++)
                 {
 
-                    case "pl_name":
+                    switch (filters[i].FieldName)
+                    {
 
-                        if (entityToValidate.Pl_name.Contains(((StringFilter)filters[i]).FilterToCompare))
-                            return true;
-                        break;
+                        case "pl_name":
 
-                    case "hostname":
-                        if (entityToValidate.HostStar.StarName.
-                            Contains(((StringFilter)filters[i]).FilterToCompare))
-                            return true;
-                        break;
+                            if (
+                                (entityToValidate as Planet).Pl_name.Contains(
+                                ((filters[i]) as StringFilter).FilterToCompare
+                                )
+                                )
+                                return true;
+                            break;
+
+                        case "hostname":
+                            if ((entityToValidate as Planet).HostStar.StarName.Contains(
+                                ((filters[i]) as StringFilter).FilterToCompare))
+                                return true;
+                            break;
 
 
-                    case "discoverymethod":
-                        if (entityToValidate.DiscoveryMethod.Contains(((StringFilter)filters[i]).FilterToCompare))
-                            return true;
-                        break;
+                        case "discoverymethod":
+                            if ((entityToValidate as Planet).DiscoveryMethod.Contains(
+                                ((filters[i]) as StringFilter).FilterToCompare))
+                                return true;
+                            break;
 
-                    case "disc_year":
+                        case "disc_year":
 
-                        if (Convert.ToInt32(((NumericFilter)filters[i]).MinValue) >= entityToValidate.Disc_year &&
-                        Convert.ToInt32(((NumericFilter)filters[i]).MinValue) <= entityToValidate.Disc_year)
-                        { return true; }
-                        break;
+                            if (Convert.ToInt32(
+                                ((filters[i]) as NumericFilter).MinValue) >= (entityToValidate as Planet).Disc_year &&
+                            Convert.ToInt32(
+                               ((filters[i]) as NumericFilter).MaxValue) <= (entityToValidate as Planet).Disc_year
+                               )
+                            { return true; }
+                            break;
 
-                    case "pl_orbper":
+                        case "pl_orbper":
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.Pl_orbper &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.Pl_orbper)
-                        { return true; }
-                        break;
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Planet).Pl_orbper &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Planet).Pl_orbper
+                                )
+                            { return true; }
+                            break;
 
-                    case "pl_rade":
+                        case "pl_rade":
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.Pl_rade &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.Pl_rade)
-                        { return true; }
-                        break;
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Planet).Pl_rade &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Planet).Pl_rade
+                                )
+                            { return true; }
+                            break;
 
-                    case "pl_masse":
+                        case "pl_masse":
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.Pl_masse &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.Pl_masse)
-                        { return true; }
-                        break;
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Planet).Pl_masse &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Planet).Pl_masse
+                                )
+                            { return true; }
+                            break;
 
-                    case "pl_eqt":
+                        case "pl_eqt":
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.Pl_eqt &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.Pl_eqt)
-                        { return true; }
-                        break;
+                            if (
+                               ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Planet).Pl_eqt &&
+                               ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Planet).Pl_eqt
+                                )
+                            { return true; }
+                            break;
+                    }
                 }
             }
-            return false;
 
-        }
-
-        public static bool ValidateStarFields(Star entityToValidate, List<IFilter> filters)
-        {
-            for (int i = 0; i < filters.Count; i++)
+            if (entityToValidate is Star)
             {
-
-                switch (filters[i].FieldName)
+                for (int i = 0; i < filters.Count; i++)
                 {
-                    case "starname":
 
-                        if (entityToValidate.StarName.Contains(((StringFilter)filters[i]).FilterToCompare))
-                            return true;
-                        break;
+                    switch (filters[i].FieldName)
+                    {
+                        case "starname":
 
-                    case "st_teff":
+                            if (
+                                (entityToValidate as Star).StarName.Contains(
+                                ((filters[i]) as StringFilter).FilterToCompare)
+                                )
+                                return true;
+                            break;
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.St_teff &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.St_teff)
-                        { return true; }
-                        break;
+                        case "st_teff":
 
-                    case "st_rad":
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Star).St_teff &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Star).St_teff
+                                )
+                            { return true; }
+                            break;
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.St_rad &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.St_rad)
-                        { return true; }
-                        break;
+                        case "st_rad":
 
-                    case "st_mass":
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Star).St_rad &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Star).St_rad
+                                )
+                            { return true; }
+                            break;
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.St_mass &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.St_mass)
-                        { return true; }
-                        break;
+                        case "st_mass":
 
-                    case "st_age":
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Star).St_mass &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Star).St_mass
+                                )
+                            { return true; }
+                            break;
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.St_age &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.St_age)
-                        { return true; }
-                        break;
+                        case "st_age":
 
-                    case "st_vsin":
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Star).St_age &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Star).St_age
+                                )
+                            { return true; }
+                            break;
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.St_vsin &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.St_vsin)
-                        { return true; }
-                        break;
+                        case "st_vsin":
+
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Star).St_vsin &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Star).St_vsin
+                                )
+                            { return true; }
+                            break;
 
 
-                    case "st_rotp":
+                        case "st_rotp":
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.St_rotp &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.St_rotp)
-                        { return true; }
-                        break;
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Star).St_rotp &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Star).St_rotp
+                                )
+                            { return true; }
+                            break;
 
-                    case "sy_dist":
+                        case "sy_dist":
 
-                        if (((NumericFilter)filters[i]).MinValue >= entityToValidate.Sy_dist &&
-                            ((NumericFilter)filters[i]).MinValue <= entityToValidate.Sy_dist)
-                        { return true; }
-                        break;
+                            if (
+                                ((filters[i]) as NumericFilter).MinValue >= (entityToValidate as Star).Sy_dist &&
+                                ((filters[i]) as NumericFilter).MaxValue <= (entityToValidate as Star).Sy_dist
+                                )
+                            { return true; }
+                            break;
+                    }
                 }
             }
             return false;

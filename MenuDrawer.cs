@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace LP2_Exoplanets_2020
 {
-    public class UIDrawer
+    public class MenuDrawer
     {
         // File path
         private string path;
-        private IEnumerable<Planet> planetList = new List<Planet>();
+        private List<Planet> planetList = new List<Planet>();
         private Dictionary<string, Star> starDictionary = new Dictionary<string, Star>();
         private IEnumerable<IFilter> planetFilters = new List<IFilter>();
         private IEnumerable<IFilter> starFilters = new List<IFilter>();
@@ -82,6 +82,8 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                 Planet Table                  |");
             Console.WriteLine("|_______________________________________________|");
             Console.WriteLine(" _______________________________________________");
+            Console.WriteLine("|                                               |");
+            Console.WriteLine("| T - Run Table                                 |");
             Console.WriteLine("|                                               |");
             Console.WriteLine("| S - Set filter                                |");
             Console.WriteLine("|                                               |");
@@ -381,6 +383,11 @@ namespace LP2_Exoplanets_2020
             // Interact with the Menu
             switch (key)
             {
+                case ConsoleKey.T:
+
+                    TableManager.RunTable(planetList as List<Planet>, planetFilters as List<IFilter>);
+                    break;
+
                 case ConsoleKey.S:
                     MenuSetFilter(isPlanet);
                     break;
@@ -417,27 +424,27 @@ namespace LP2_Exoplanets_2020
             {
                 case ConsoleKey.Y:
                     //Disc_year
-                    MenuMinMaxValue("disc_year",true);
+                    MenuMinMaxValue("disc_year", true);
                     break;
 
                 case ConsoleKey.O:
                     //Pl_orbper
-                    MenuMinMaxValue("pl_orbper",true);
+                    MenuMinMaxValue("pl_orbper", true);
                     break;
 
                 case ConsoleKey.A:
                     //Pl_rade
-                    MenuMinMaxValue("pl_rade",true);
+                    MenuMinMaxValue("pl_rade", true);
                     break;
 
                 case ConsoleKey.M:
                     //Pl_masse
-                    MenuMinMaxValue("pl_masse",true);
+                    MenuMinMaxValue("pl_masse", true);
                     break;
 
                 case ConsoleKey.P:
                     //Pl_eqt
-                    MenuMinMaxValue("pl_eqt",true);
+                    MenuMinMaxValue("pl_eqt", true);
                     break;
 
                 case ConsoleKey.C:
@@ -466,37 +473,37 @@ namespace LP2_Exoplanets_2020
             {
                 case ConsoleKey.T:
 
-                    MenuMinMaxValue("st_teff",false);
+                    MenuMinMaxValue("st_teff", false);
                     break;
 
                 case ConsoleKey.I:
 
-                    MenuMinMaxValue("st_rad",false);
+                    MenuMinMaxValue("st_rad", false);
                     break;
 
                 case ConsoleKey.M:
 
-                    MenuMinMaxValue("st_mass",false);
+                    MenuMinMaxValue("st_mass", false);
                     break;
 
                 case ConsoleKey.A:
 
-                    MenuMinMaxValue("st_age",false);
+                    MenuMinMaxValue("st_age", false);
                     break;
 
                 case ConsoleKey.V:
 
-                    MenuMinMaxValue("st_vsin",false);
+                    MenuMinMaxValue("st_vsin", false);
                     break;
 
                 case ConsoleKey.S:
 
-                    MenuMinMaxValue("st_rotp",false);
+                    MenuMinMaxValue("st_rotp", false);
                     break;
 
                 case ConsoleKey.D:
 
-                    MenuMinMaxValue("sy_dist",false);
+                    MenuMinMaxValue("sy_dist", false);
                     break;
 
                 case ConsoleKey.C:
@@ -524,17 +531,17 @@ namespace LP2_Exoplanets_2020
             {
                 case ConsoleKey.N:
 
-                    MenuTextValue("pl_name",true);
+                    MenuTextValue("pl_name", true);
                     break;
 
                 case ConsoleKey.D:
 
-                    MenuTextValue("discoverymethod",true);
+                    MenuTextValue("discoverymethod", true);
                     break;
 
                 case ConsoleKey.H:
 
-                    MenuTextValue("hostname",true);
+                    MenuTextValue("hostname", true);
                     break;
 
 
@@ -567,7 +574,7 @@ namespace LP2_Exoplanets_2020
             switch (key)
             {
                 case ConsoleKey.S:
-                    MenuTextValue("starname",false);
+                    MenuTextValue("starname", false);
                     break;
 
                 case ConsoleKey.C:

@@ -3,40 +3,66 @@ using System.Linq;
 
 namespace LP2_Exoplanets_2020
 {
-    public class DrawTable
+    public static class DrawTable
     {
-        public int tableWidth;
 
-        /// <summary>
-        /// Construct method
-        /// </summary>
-        /// <param name="tableWidth">recives value of the table width </param>
-        public DrawTable(int tableWidth){
-            this.tableWidth = tableWidth;
-        }
 
-        public void TableLines()
+        public static void PrintTable()
         {
-            Console.WriteLine(new string('-', tableWidth));
+
+
         }
 
-        public void PrintRow(params string[] columns)
+
+
+        public static void PrintEntity<T>(T entity) where T : IEntity
         {
-            int columnWidth = (tableWidth - columns.Length) / columns.Length;
-            const string columnSeperator = "|";
+            if (entity != null)
 
-            string row = columns.Aggregate(columnSeperator, (seperator, columnText) => seperator + CenterText(columnText, columnWidth) + columnSeperator);
+            {
+                if ((entity as Planet).HostStar == null)
+                {
+                    Console.WriteLine("aisuhgdausdhgfiufsdga");
+                }
 
-            Console.WriteLine(row);
+
+
+                if (entity is Planet)
+                {
+                    Console.WriteLine(" Plnt. Name:{0} | Host name: {1} ",
+                        (entity as Planet).Pl_name, (entity as Planet).HostStar.StarName);
+                    Console.WriteLine(" Disc. method: {0} | Disc. year: {1} | Orb. period: {2} days",
+                        (entity as Planet).DiscoveryMethod, (entity as Planet).Disc_year, (entity as Planet).Pl_eqt);
+                    Console.WriteLine(" Plnt. Radius: {0} earths | Plnt. mass: {1} earths |Equilib. temp: {2} Kelvin ",
+                        (entity as Planet).Pl_rade, (entity as Planet).Pl_masse, (entity as Planet).Pl_eqt);
+
+                }
+                else if (entity is Star)
+                {
+                    Console.WriteLine(" Star Name:{0} | Hosting: {1} planets | distance fom sun: {2}",
+                     (entity as Star).StarName, (entity as Star).CountHostedPlanets(), (entity as Star).Sy_dist);
+                    Console.WriteLine(" Age: {0} Giga-years | Rot. velocity: {1} km/s | Rot. period: {2} days",
+                    (entity as Star).St_age, (entity as Star).St_vsin, (entity as Star).St_rotp);
+                    Console.WriteLine(" Star Radius: {0} earths | Star mass: {1} Suns | Efective Temp: {2} Kelvin ",
+                    (entity as Star).St_rad, (entity as Star).St_mass, (entity as Star).St_teff);
+
+                }
+            }
+
+
+
         }
-
-        private string CenterText(string text, int columnWidth)
+        public static void DrawUI()
         {
-            text = text.Length > columnWidth ? text.Substring(0, columnWidth - 3) + "..." : text;
+            int ActualPage = default;
+            int TotalPage = default;
+            Console.WriteLine("M - Menu   P << {0}/{1} >> N    E - Exit", ActualPage, TotalPage);
 
-            return string.IsNullOrEmpty(text)
-                ? new string(' ', columnWidth)
-                : text.PadRight(columnWidth - ((columnWidth - text.Length) / 2)).PadLeft(columnWidth);
         }
+
+
+
+
+
     }
 }

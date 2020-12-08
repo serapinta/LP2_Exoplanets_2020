@@ -12,6 +12,7 @@ namespace LP2_Exoplanets_2020
         {
             List<Planet> planetList = GeneratePlanetsOnly(_filePath);
 
+            Console.WriteLine(planetList.Count + ".");
             starDictionary = GenerateStarsOnly(planetList);
 
             return planetList;
@@ -21,7 +22,6 @@ namespace LP2_Exoplanets_2020
         public static List<Planet> GeneratePlanetsOnly(string _filePath)
         {
             List<Planet> planets = new List<Planet>();
-
             try
             {
                 using (StreamReader fileCsv = new StreamReader(_filePath))
@@ -35,7 +35,7 @@ namespace LP2_Exoplanets_2020
                         {
                             if (line[0] != '#')
                             {
-                                if (header == null)
+                                if (header == null ||header.Count<string>() == 0 )
                                 {
                                     header = line.Split(',');
                                 }
@@ -76,21 +76,23 @@ namespace LP2_Exoplanets_2020
             Dictionary<string, Star> starDictionary = new Dictionary<string, Star>();
             for (int i = 0; i < planetList.Count; i++)
             {
-                if (starDictionary.ContainsKey(planetList[i].HostStar.StarName))
+                
+                if (planetList[i].HostStar != null && planetList[i].HostStar.StarName != " " &&
+                    planetList[i].HostStar.StarName != "")
                 {
-                    starDictionary[planetList[i].HostStar.StarName] = planetList[i].HostStar;
+                    if (starDictionary.ContainsKey(planetList[i].HostStar.StarName))
+                    {
+                        Console.WriteLine(planetList[i].HostStar.StarName);
+                        starDictionary[planetList[i].HostStar.StarName].ActualizeValues(planetList[i]);
+                    }
+                    else
+                    {
+                        starDictionary.Add(planetList[i].HostStar.StarName, planetList[i].HostStar);
+
+                    }
                 }
-                else
-                {
-                    starDictionary.Add(planetList[i].HostStar.StarName, planetList[i].HostStar);
-
-                }
-
-
             }
             return starDictionary;
-
-
         }
 
     }

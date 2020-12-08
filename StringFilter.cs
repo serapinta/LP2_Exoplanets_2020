@@ -1,6 +1,6 @@
 namespace LP2_Exoplanets_2020
 {
-    public struct StringFilter : IFilter
+    public class StringFilter : IFilter
     {
         public string FieldName { get; set; }
 

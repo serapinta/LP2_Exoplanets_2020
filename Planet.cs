@@ -24,7 +24,8 @@ namespace LP2_Exoplanets_2020
 
         public Planet(string[] fields, string[] fieldsOrder)
         {
-            HostStar = new Star();
+            HostStar = new Star(fields, fieldsOrder);
+
             for (int i = 0; i < fieldsOrder.Length; i++)
             {
 
@@ -33,10 +34,6 @@ namespace LP2_Exoplanets_2020
 
                     case "pl_name":
                         Pl_name = fields[i];
-                        break;
-
-                    case "hostname":
-                        HostStar.StarName = fields[i];
                         break;
 
                     case "discoverymethod":
@@ -69,40 +66,6 @@ namespace LP2_Exoplanets_2020
                          (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
                         break;
 
-                    case "st_teff":
-                        HostStar.St_teff = (fields[i] != null && fields[i].Length != 0) ?
-                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-                        break;
-
-                    case "st_rad":
-                        HostStar.St_rad = (fields[i] != null && fields[i].Length != 0) ?
-                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-                        break;
-
-                    case "st_mass":
-                        HostStar.St_mass = (fields[i] != null && fields[i].Length != 0) ?
-                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-                        break;
-
-                    case "st_age":
-                        HostStar.St_age = (fields[i] != null && fields[i].Length != 0) ?
-                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-                        break;
-
-                    case "st_vsin":
-                        HostStar.St_vsin = (fields[i] != null && fields[i].Length != 0) ?
-                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-                        break;
-
-                    case "st_rotp":
-                        HostStar.St_rotp = (fields[i] != null && fields[i].Length != 0) ?
-                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-                        break;
-
-                    case "sy_dist":
-                        HostStar.Sy_dist = (fields[i] != null && fields[i].Length != 0) ?
-                         (float)double.Parse(fields[i], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-                        break;
                 }
             }
         }

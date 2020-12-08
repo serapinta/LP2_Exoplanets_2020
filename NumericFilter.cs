@@ -2,7 +2,7 @@ using System;
 
 namespace LP2_Exoplanets_2020
 {
-    public struct NumericFilter : IFilter
+    public class NumericFilter : IFilter
     {
         public string FieldName { get; set; }
         public float MinValue { get;private set; }
