@@ -22,7 +22,7 @@ ainda executou o makdown e o uml (repartido).
 
 ## Repositório Remoto
 
-[LP2_Exoplanets_2020](https://github.com/serapinta/LP2_Exoplanets_2020/blob/main/Imagens/UML.png)
+[LP2_Exoplanets_2020]()
 
 # Arquitectura da solução
 
