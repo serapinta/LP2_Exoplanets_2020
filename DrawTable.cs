@@ -16,7 +16,6 @@ namespace LP2_Exoplanets_2020
             {
                 while (stay)
                 {
-                    Console.WriteLine(book.Count);
                     PrintPage(book[actualPage]);
                     actualPage = DrawPageUI(actualPage, book.Count - 1, out stay);
 

@@ -35,7 +35,7 @@ namespace LP2_Exoplanets_2020
             {
                 if (ValidateFields(entities[i], filters))
                 {
-                    Console.WriteLine("here");
+                    
                     filteredList.Add(entities[i]);
                 }
             }
@@ -77,9 +77,6 @@ namespace LP2_Exoplanets_2020
                             break;
 
                         case "disc_year":
-
-                            Console.WriteLine( (int) (((filters[i]) as NumericFilter).MinValue) + "---" + (entityToValidate as Planet).Disc_year);
-                            Console.WriteLine( (int) (((filters[i]) as NumericFilter).MaxValue) + "---" + (entityToValidate as Planet).Disc_year);
                             if (
                                 Convert.ToInt32(((filters[i]) as NumericFilter).MinValue) <= ((entityToValidate as Planet).Disc_year) &&
                                 Convert.ToInt32(((filters[i]) as NumericFilter).MaxValue) >= ((entityToValidate as Planet).Disc_year)

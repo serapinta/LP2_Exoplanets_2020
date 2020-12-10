@@ -271,7 +271,7 @@ namespace LP2_Exoplanets_2020
 
             float max = (input[1] != null && input[1].Length != 0) ?
             (float)double.Parse(input[1], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-            Console.WriteLine(min + "---" + max);
+         
             Console.ReadLine();
 
             if (isPlanet)
