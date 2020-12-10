@@ -46,7 +46,7 @@ _.csv_ para serem lidos.
 
 ## Diagrama UML 
 
-![UML](https://github.com/serapinta/LP2_Exoplanets_2020/blob/main/Imagens/UML)
+![UML](https://github.com/serapinta/LP2_Exoplanets_2020/blob/main/Imagens/UML.png)
 
 # Referências
 
