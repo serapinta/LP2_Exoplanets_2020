@@ -1,5 +1,4 @@
-﻿
-namespace LP2_Exoplanets_2020
+﻿namespace LP2_Exoplanets_2020
 {
     /// <summary>
     /// main class
@@ -8,7 +7,7 @@ namespace LP2_Exoplanets_2020
     {
         static void Main(string[] args)
         {
-             MenuDrawer ui = new MenuDrawer();
+            MenuDrawer ui = new MenuDrawer();
             ui.DrawFilePath();
         }
     }

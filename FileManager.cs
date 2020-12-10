@@ -16,7 +16,7 @@ namespace LP2_Exoplanets_2020
             if (ValidateFile(_filePath))
             {
 
-                return EntityGenerator.GenerateStarsAndPlanets(_filePath,out starDictionary);
+                return EntityGenerator.GenerateStarsAndPlanets(_filePath, out starDictionary);
             }
             else
                 return null;
@@ -25,55 +25,56 @@ namespace LP2_Exoplanets_2020
 
         public static bool ValidateFile(string _filePath)
         {
-            if(_filePath.Length !=0 && _filePath != null){
-                
-                 try
+            if (_filePath.Length != 0 && _filePath != null)
             {
-                using (StreamReader fileCsv = new StreamReader(_filePath))
+
+                try
                 {
-                    String line;
-                    String[] header = null;
-                    //check if column's title line exists
-                    while ((line = fileCsv.ReadLine()) != null)
+                    using (StreamReader fileCsv = new StreamReader(_filePath))
                     {
-                        if (line[0] != '#' && header == null)
+                        String line;
+                        String[] header = null;
+                        //check if column's title line exists
+                        while ((line = fileCsv.ReadLine()) != null)
                         {
-                            header = line.Split(',');
-                            break;
+                            if (line[0] != '#' && header == null)
+                            {
+                                header = line.Split(',');
+                                break;
+                            }
                         }
-                    }
-                    //if not return false, the values can't be sorted properly
-                    if (header == null)
-                    {
-                        throw new IOException("The file requires the header line to be valid.");
-                    }
-                    uint flag = 0;
-
-                    for (int i = 0; i < header.Length; i++)
-                    {
-                        if (flag == 2) { break; }
-                        if (header[i] == "pl_name" || header[i] == "hostname")
+                        //if not return false, the values can't be sorted properly
+                        if (header == null)
                         {
-                            flag++;
+                            throw new IOException("The file requires the header line to be valid.");
                         }
-                    }
-                    if (flag == 2) { return true; }
-                    else
-                    {
-                        throw new IOException("The file requires the pl_name and hostname columns to be valid.");
-                    }
+                        uint flag = 0;
 
+                        for (int i = 0; i < header.Length; i++)
+                        {
+                            if (flag == 2) { break; }
+                            if (header[i] == "pl_name" || header[i] == "hostname")
+                            {
+                                flag++;
+                            }
+                        }
+                        if (flag == 2) { return true; }
+                        else
+                        {
+                            throw new IOException("The file requires the pl_name and hostname columns to be valid.");
+                        }
+
+                    }
+                }
+                catch (IOException ioex)
+                {
+                    Console.WriteLine("Invalid File. Error: " + ioex);
+                    return false;
                 }
             }
-            catch (IOException ioex)
-            {
-                Console.WriteLine("Invalid File. Error: " + ioex);
-                return false;
-            }
-            }
             else
-            {return false;}
-           
+            { return false; }
+
         }
     }
 }

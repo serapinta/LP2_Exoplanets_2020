@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace LP2_Exoplanets_2020
@@ -51,7 +50,7 @@ namespace LP2_Exoplanets_2020
         /// </summary>
 
         //Draw methods
-        private void DrawMainMenu(string messageError ="")
+        private void DrawMainMenu(string messageError = "")
         {
             Console.Clear();
             Console.WriteLine(" _______________________________________________");
@@ -274,7 +273,7 @@ namespace LP2_Exoplanets_2020
 
             float max = (input[1] != null && input[1].Length != 0) ?
             (float)double.Parse(input[1], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-         
+
             Console.ReadLine();
 
             if (isPlanet)
@@ -394,7 +393,7 @@ namespace LP2_Exoplanets_2020
             switch (key)
             {
                 case ConsoleKey.T:
-                    string messageError ;
+                    string messageError;
                     TableManager.RunTable(planetList as List<Planet>, planetFilters as List<IFilter>, out messageError);
                     DrawMainMenu(messageError);
 

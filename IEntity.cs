@@ -5,6 +5,6 @@ namespace LP2_Exoplanets_2020
     /// </summary>
     public interface IEntity
     {
-        
+
     }
 }

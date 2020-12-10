@@ -1,6 +1,6 @@
 namespace LP2_Exoplanets_2020
 {
- /// <summary>
+    /// <summary>
     /// string filter class
     /// </summary>
     public class StringFilter : IFilter
@@ -9,7 +9,7 @@ namespace LP2_Exoplanets_2020
 
         public string FilterToCompare { get; set; }
 
-public StringFilter(string fieldName, string filterToCompare)
+        public StringFilter(string fieldName, string filterToCompare)
         {
             FieldName = fieldName;
             FilterToCompare = filterToCompare;

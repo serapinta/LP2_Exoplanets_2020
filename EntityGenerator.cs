@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 
 namespace LP2_Exoplanets_2020
-{ 
+{
     /// <summary>
     /// class responsible for generate the entities lists
     /// </summary>
@@ -15,7 +15,7 @@ namespace LP2_Exoplanets_2020
         {
             List<Planet> planetList = GeneratePlanetsOnly(_filePath);
 
-           
+
             starDictionary = GenerateStarsOnly(planetList);
 
             return planetList;
@@ -38,7 +38,7 @@ namespace LP2_Exoplanets_2020
                         {
                             if (line[0] != '#')
                             {
-                                if (header == null ||header.Count<string>() == 0 )
+                                if (header == null || header.Count<string>() == 0)
                                 {
                                     header = line.Split(',');
                                 }
@@ -79,13 +79,13 @@ namespace LP2_Exoplanets_2020
             Dictionary<string, Star> starDictionary = new Dictionary<string, Star>();
             for (int i = 0; i < planetList.Count; i++)
             {
-                
+
                 if (planetList[i].HostStar != null && planetList[i].HostStar.StarName != " " &&
                     planetList[i].HostStar.StarName != "")
                 {
                     if (starDictionary.ContainsKey(planetList[i].HostStar.StarName))
                     {
-                        
+
                         starDictionary[planetList[i].HostStar.StarName].ActualizeValues(planetList[i]);
                     }
                     else

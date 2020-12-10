@@ -9,21 +9,21 @@ namespace LP2_Exoplanets_2020
     public static class TableManager
     {
 
-        public static void RunTable<T, U>(List<T> entities, List<U> filters,out string stringError, int firstOfThisPage = 0) where T : IEntity where U : IFilter
+        public static void RunTable<T, U>(List<T> entities, List<U> filters, out string stringError, int firstOfThisPage = 0) where T : IEntity where U : IFilter
         {
             List<List<T>> book = new List<List<T>>();
 
-                if (filters.Count > 0)
-                {
-                    book = GenerateBook<T>(GetFilteredList(entities, filters));
-                }
-            
-                else
-                {
-                    book = GenerateBook<T>(entities);
-                }
+            if (filters.Count > 0)
+            {
+                book = GenerateBook<T>(GetFilteredList(entities, filters));
+            }
 
-                DrawTable.PrintBook(book ,out stringError);
+            else
+            {
+                book = GenerateBook<T>(entities);
+            }
+
+            DrawTable.PrintBook(book, out stringError);
         }
 
         public static List<T> GetFilteredList<T, U>(List<T> entities, List<U> filters) where T : IEntity where U : IFilter
@@ -36,7 +36,7 @@ namespace LP2_Exoplanets_2020
             {
                 if (ValidateFields(entities[i], filters))
                 {
-                    
+
                     filteredList.Add(entities[i]);
                 }
             }
