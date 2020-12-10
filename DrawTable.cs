@@ -6,16 +6,39 @@ namespace LP2_Exoplanets_2020
 {
     public static class DrawTable
     {
-        public static void PrintBook<T>(List<List<T>> book) where T : IEntity
+        public static void PrintBook<T>(List<List<T>> book, out string stringError) where T : IEntity
         {
             bool stay = true;
             int actualPage = 0;
-            while (stay)
-            {
-                PrintPage(book[actualPage]);
-                actualPage = DrawPageUI(actualPage, book.Count, out stay);
+            stringError = "";
 
+            if (ValidateBook(book))
+            {
+                while (stay)
+                {
+                    Console.WriteLine(book.Count);
+                    PrintPage(book[actualPage]);
+                    actualPage = DrawPageUI(actualPage, book.Count - 1, out stay);
+
+                }
             }
+            else
+            {
+                stringError = "the planet list is empty, try another values at the filters.";
+            }
+
+        }
+
+        public static bool ValidateBook<T>(List<List<T>> book) where T : IEntity
+        {
+            if (book != null)
+            {
+                if (book.Count > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
 
         }
 
@@ -23,12 +46,12 @@ namespace LP2_Exoplanets_2020
         public static void PrintPage<T>(List<T> page) where T : IEntity
         {
             Console.Clear();
-
+            Console.WriteLine("******************************************************************************************************");
             foreach (T entity in page)
             {
                 PrintEntity<T>(entity);
             }
-
+            Console.WriteLine("******************************************************************************************************");
         }
 
 
@@ -84,11 +107,11 @@ namespace LP2_Exoplanets_2020
 
                 case ConsoleKey.P:
                     stay = true;
-                    return (actualPage<=0? 0: actualPage - 1);
+                    return (actualPage <= 0 ? 0 : actualPage - 1);
 
                 case ConsoleKey.N:
                     stay = true;
-                    return actualPage>=totalPage? actualPage: actualPage + 1;
+                    return actualPage >= totalPage ? actualPage : actualPage + 1;
 
 
                 case ConsoleKey.E:

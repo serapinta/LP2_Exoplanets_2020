@@ -48,7 +48,7 @@ namespace LP2_Exoplanets_2020
         /// </summary>
 
         //Draw methods
-        private void DrawMainMenu()
+        private void DrawMainMenu(string messageError ="")
         {
             Console.Clear();
             Console.WriteLine(" _______________________________________________");
@@ -67,6 +67,7 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("|                                               |");
             Console.WriteLine("| E - Exit                                      |");
             Console.WriteLine("|_______________________________________________|");
+            Console.WriteLine(messageError);
             // Checks if it a star or a planet table
             ConsoleKey key = (Console.ReadKey(true)).Key;
             MainMenuChoice(key);
@@ -95,8 +96,6 @@ namespace LP2_Exoplanets_2020
             ConsoleKey key = (Console.ReadKey(true)).Key;
             FilterTypeChoice(key, true);
         }
-
-
 
         private void MenuStarTable()
         {
@@ -272,8 +271,8 @@ namespace LP2_Exoplanets_2020
 
             float max = (input[1] != null && input[1].Length != 0) ?
             (float)double.Parse(input[1], System.Globalization.CultureInfo.InvariantCulture) : 0f;
-            Console.WriteLine(min+"---" + max);
-           Console.ReadLine();
+            Console.WriteLine(min + "---" + max);
+            Console.ReadLine();
 
             if (isPlanet)
             {
@@ -380,7 +379,7 @@ namespace LP2_Exoplanets_2020
                     if (isPlanet)
                     { MenuSetFilter(true); }
                     else
-                    { MenuSetFilter(false) ;}
+                    { MenuSetFilter(false); }
 
                     break;
             }
@@ -392,8 +391,9 @@ namespace LP2_Exoplanets_2020
             switch (key)
             {
                 case ConsoleKey.T:
-                    TableManager.RunTable(planetList as List<Planet>, planetFilters as List<IFilter>);
-
+                    string messageError ;
+                    TableManager.RunTable(planetList as List<Planet>, planetFilters as List<IFilter>, out messageError);
+                    DrawMainMenu(messageError);
 
                     break;
 
