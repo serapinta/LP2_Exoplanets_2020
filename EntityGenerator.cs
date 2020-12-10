@@ -4,7 +4,10 @@ using System.IO;
 using System.Linq;
 
 namespace LP2_Exoplanets_2020
-{
+{ 
+    /// <summary>
+    /// class responsible for generate the entities lists
+    /// </summary>
     public static class EntityGenerator
     {
 

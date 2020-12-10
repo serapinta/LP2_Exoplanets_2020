@@ -2,6 +2,10 @@ using System.Collections.Generic;
 
 namespace LP2_Exoplanets_2020
 {
+
+    /// <summary>
+    /// class responsible to generate the star entity
+    /// </summary>
     public class Star : IEntity
     {
         //star name

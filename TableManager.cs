@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace LP2_Exoplanets_2020
 {
+    /// <summary>
+    /// class responsible for the table management
+    /// </summary>
     public static class TableManager
     {
 
@@ -22,8 +25,6 @@ namespace LP2_Exoplanets_2020
 
                 DrawTable.PrintBook(book ,out stringError);
         }
-
-
 
         public static List<T> GetFilteredList<T, U>(List<T> entities, List<U> filters) where T : IEntity where U : IFilter
         {

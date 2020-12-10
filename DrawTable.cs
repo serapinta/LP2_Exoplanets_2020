@@ -4,8 +4,17 @@ using System.Linq;
 
 namespace LP2_Exoplanets_2020
 {
+    /// <summary>
+    /// class responsible to print the table 
+    /// </summary>
     public static class DrawTable
     {
+        /// <summary>
+        /// nethod called outside the class to print the table
+        /// </summary>
+        /// <param name="book"> list containing a list of entities in each page</param>
+        /// <param name="stringError"> possible error returner when the book field is invalid</param>
+        /// <typeparam name="T"> generic value who is IEntity </typeparam>
         public static void PrintBook<T>(List<List<T>> book, out string stringError) where T : IEntity
         {
             bool stay = true;
@@ -28,6 +37,12 @@ namespace LP2_Exoplanets_2020
 
         }
 
+        /// <summary>
+        /// method to validate the table
+        /// </summary>
+        /// <param name="book"> list containing a list of entities in each page</param>
+        /// <typeparam name="T"> generic value who is IEntity </typeparam>
+        /// <returns></returns>
         public static bool ValidateBook<T>(List<List<T>> book) where T : IEntity
         {
             if (book != null)
@@ -41,7 +56,11 @@ namespace LP2_Exoplanets_2020
 
         }
 
-
+        /// <summary>
+        /// methos to print all pages, one by one
+        /// </summary>
+        /// <param name="page"></param>
+        /// <typeparam name="T"></typeparam>
         public static void PrintPage<T>(List<T> page) where T : IEntity
         {
             Console.Clear();
@@ -53,7 +72,11 @@ namespace LP2_Exoplanets_2020
             Console.WriteLine("******************************************************************************************************");
         }
 
-
+        /// <summary>
+        /// pethod to print the given entity
+        /// </summary>
+        /// <param name="entity">entity given </param>
+        /// <typeparam name="T">generig IEntity type</typeparam>
         public static void PrintEntity<T>(T entity) where T : IEntity
         {
             if (entity != null)
@@ -86,7 +109,13 @@ namespace LP2_Exoplanets_2020
 
         }
 
-
+        /// <summary>
+        /// page UI
+        /// </summary>
+        /// <param name="actualPage">actual printed page</param>
+        /// <param name="totalPage">total pages</param>
+        /// <param name="stay">value to se if it need to stay at the same page</param>
+        /// <returns></returns>
         public static int DrawPageUI(int actualPage, int totalPage, out bool stay)
         {
             Console.WriteLine("-----------------------------------------------------------------------");

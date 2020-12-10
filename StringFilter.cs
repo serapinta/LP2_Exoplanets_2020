@@ -1,5 +1,8 @@
 namespace LP2_Exoplanets_2020
 {
+ /// <summary>
+    /// string filter class
+    /// </summary>
     public class StringFilter : IFilter
     {
         public string FieldName { get; set; }

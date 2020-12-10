@@ -4,6 +4,9 @@ using System.IO;
 
 namespace LP2_Exoplanets_2020
 {
+    /// <summary>
+    /// class responsible for the file management
+    /// </summary>
     public static class FileManager
     {
         public static List<Planet> ReadFile(string _filePath, out Dictionary<string, Star> starDictionary)

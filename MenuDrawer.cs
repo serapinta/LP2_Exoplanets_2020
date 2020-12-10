@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace LP2_Exoplanets_2020
 {
+    /// <summary>
+    /// class responsible for call all the menus
+    /// </summary>
     public class MenuDrawer
     {
         // File path

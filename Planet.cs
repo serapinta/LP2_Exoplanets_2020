@@ -2,6 +2,9 @@ using System;
 
 namespace LP2_Exoplanets_2020
 {
+   /// <summary>
+    /// class responsible to generate the planet entity
+    /// </summary>
     public class Planet : IEntity
     {
         //Planet name

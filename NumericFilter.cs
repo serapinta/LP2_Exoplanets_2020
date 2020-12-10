@@ -2,6 +2,9 @@ using System;
 
 namespace LP2_Exoplanets_2020
 {
+    /// <summary>
+    /// Numeric filter class
+    /// </summary>
     public class NumericFilter : IFilter
     {
         public string FieldName { get; set; }
