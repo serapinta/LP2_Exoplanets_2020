@@ -72,7 +72,5 @@ namespace LP2_Exoplanets_2020
             {return false;}
            
         }
-
-
     }
 }
